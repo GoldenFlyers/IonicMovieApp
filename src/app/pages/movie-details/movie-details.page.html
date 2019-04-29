@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>movieDetails</ion-title>
+    <ion-buttons slot='start'>
+      <ion-back-button defaultHref='/'></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{movieDetails?.Genre}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content padding>
+  <ion-card *ngIf='movieDetails'>
+    <ion-card-header>
+      <ion-card-title>
+        {{movieDetails?.Title}}
+      </ion-card-title>
+      <ion-card-subtitle>
+        {{movieDetails?.Year}}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content text-center>
+      <img [src]="movieDetails?.Poster" class='info-img'>
+      {{movieDetails?.Plot}}
+      <ion-item lines='none'>
+        <ion-icon name='star-half' slot='start'></ion-icon>
+        <ion-label text-wrap> {{movieDetails?.Plot}}</ion-label>
+      </ion-item>
+      <ion-item lines='none'>
+          <ion-icon name='clipboard' slot='start'></ion-icon>
+          <ion-label text-wrap> {{movieDetails?.Director}}</ion-label>
+        </ion-item>
+        <ion-item lines='none'>
+            <ion-icon name='contacts' slot='start'></ion-icon>
+            <ion-label text-wrap> {{movieDetails?.Actors}}</ion-label>
+          </ion-item>
+          <ion-button expand='full' *ngIf="movieDetails.Website && movieDetails.Website!=='N/A'" (click)="openWebsite()">
+            Open Website</ion-button>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
